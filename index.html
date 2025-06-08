@@ -48,7 +48,8 @@
         .hero {
             height: 100vh;
             background-image: url('images/tesla-voiture.jpg');
-            background-size: cover;
+            background-size: contain;  /* αντί για cover για να μη κόβεται */
+            background-repeat: no-repeat;
             background-position: center;
             display: flex;
             flex-direction: column;
@@ -155,7 +156,7 @@
         .testimonials {
             background-color: #1c1c1c;
             color: #f4f4f4;
-            padding: 50px 20px 60px;
+            padding: 70px 30px 90px; /* αύξηση padding από 50 20 60 σε 70 30 90 */
             max-width: 900px;
             margin: 0 auto;
             border-radius: 12px;
@@ -225,10 +226,14 @@
                 font-size: 1rem;
             }
             .hero {
-                background-position: center top;
+                background-size: contain;  /* κρατάμε contain */
+                background-position: center center;
             }
             .about img {
                 max-width: 100%;
+            }
+            .testimonials {
+                padding: 50px 20px 60px; /* λίγο πιο μικρό padding στο κινητό για να μην είναι τεράστιο */
             }
         }
     </style>
