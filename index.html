@@ -4,265 +4,254 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Φανοποιείο AutoFix</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            scroll-behavior: smooth;
-            padding-top: 70px;
-        }
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        scroll-behavior: smooth;
+        padding-top: 70px;
+    }
 
-        header {
-            background-color: #333;
-            color: white;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+    header {
+        background-color: #333;
+        color: white;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
 
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-        nav a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+    nav a {
+        color: white;
+        padding: 15px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 
-        nav a:hover {
-            background-color: #444;
-        }
+    nav a:hover {
+        background-color: #444;
+    }
 
+    .hero {
+        height: 100vh;
+        background-image: url('images/tesla-voiture.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+
+    .hero button {
+        padding: 12px 25px;
+        background-color: #C0C0C0;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+
+    .hero button:hover {
+        background-color: #A0A0A0;
+    }
+
+    section {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .services, .workspace, .works, .testimonials, .about, .contact {
+        max-width: 1100px;
+        margin: 0 auto 50px auto;
+    }
+
+    .services, .workspace-images, .works-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .service-item, .testimonial-item, .contact-item {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .workspace, .works, .testimonials, .about, .contact {
+        background-color: #1c1c1c;
+        color: white;
+        padding: 70px 40px 90px;
+        border-radius: 12px;
+    }
+
+    .workspace-images img, .works-images img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Services section */
+    .services {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .service-item {
+        flex: 1 1 300px;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .service-item:hover {
+        transform: translateY(-8px);
+    }
+
+    .service-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .testimonials h2 {
+        margin-bottom: 35px;
+        font-weight: 700;
+    }
+
+    .testimonial-container {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .testimonial-item {
+        background-color: #333;
+        padding: 20px 30px;
+        border-radius: 12px;
+        font-style: italic;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* About */
+    .about {
+        text-align: center;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .about img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .contact-item {
+        background-color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        flex: 1 1 250px;
+    }
+
+    .contact a {
+        color: #f4f4f4;
+        text-decoration: none;
+    }
+
+    footer {
+        background-color: #000;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    @media (max-width: 768px) {
         .hero {
-            height: 100vh;
-            background-image: url('images/tesla-voiture.jpg');
-            background-size: cover;  /* Desktop: γεμίζει όλη την οθόνη */
+            background-size: contain;
+            background-position: center center;
             background-repeat: no-repeat;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
+            height: auto;
+            min-height: 60vh;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-
-        .hero button {
-            padding: 12px 25px;
-            background-color: #C0C0C0;
-            color: white;
-            border: none;
-            cursor: pointer;
             font-size: 1rem;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .hero button:hover {
-            background-color: #A0A0A0;
-        }
-
-        section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .services, .workspace-images, .works-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .service-item, .testimonial-item, .contact-item {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .workspace, .works, .testimonials, .about, .contact {
-            background-color: #1c1c1c;
-            color: white;
-        }
-
-        .workspace-images img, .works-images img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        /* Υπηρεσίες μας */
-.services {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.service-item {
-    flex: 1 1 300px;
-    background-color: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.service-item:hover {
-    transform: translateY(-8px);
-}
-
-.service-item img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-/* Μαρτυρίες Πελατών */
-        .testimonials {
-            background-color: #1c1c1c; /* ίδιο μαύρο σκοτεινό */
-            color: #f4f4f4;
-            padding: 70px 40px 90px; /* λίγο μεγαλύτερο padding δεξιά-αριστερά */
-            max-width: 1100px;       /* ίδιο max-width με τις υπηρεσίες */
-            margin: 0 auto 50px auto; /* λίγο κάτω margin για απόσταση */
-            border-radius: 12px;
-            min-height: 400px;       /* ελάχιστο ύψος για ομοιομορφία */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .testimonials h2 {
-            margin-bottom: 35px;
-            font-weight: 700;
-        }
-
-        .testimonial-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .testimonial-item {
-            background-color: #333;
-            padding: 20px 30px;
-            border-radius: 12px;
-            font-style: italic;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-        }
-
-        /* Σχετικά με εμάς */
-        .about {
-            text-align: center;
-            background-color: #1c1c1c;
-            color: white;
-            padding: 70px 40px 90px;  /* ίδιο padding με testimonials */
-            max-width: 1100px;        /* ίδιο max-width */
-            margin: 0 auto 50px auto;
-            border-radius: 12px;
-            min-height: 400px;        /* ίδιο ύψος */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .about img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .testimonials, .about {
-            max-width: 1100px; /* ίδιο πλάτος με works & contact */
-            margin: 0 auto 50px auto; /* κεντραρισμένα και με κάτω margin */
-            padding: 70px 30px 90px; /* διατήρηση padding */
-            border-radius: 12px;
-            background-color: #1c1c1c;
-            color: #f4f4f4;
+            max-width: 100%;
         }
 
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+        .testimonials {
+            padding: 50px 20px 60px;
         }
+    }
+</style>
 
-        .contact-item {
-            background-color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            flex: 1 1 250px;
-        }
-
-        .contact a {
-            color: #f4f4f4;
-            text-decoration: none;
-        }
-
-        footer {
-            background-color: #000;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        @media (max-width: 768px) {
-                .hero {
-                background-size: contain; /* Κινητό: να φαίνεται όλη η εικόνα */
-                background-position: center center;
-                background-repeat: no-repeat;
-                height: auto; /* ώστε να προσαρμόζεται ύψος ανάλογα με την εικόνα */
-                min-height: 60vh; /* ελάχιστο ύψος για να μη φαίνεται πολύ μικρή */
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .about img {
-                max-width: 100%;
-            }
-            .testimonials {
-                padding: 50px 20px 60px; /* λίγο πιο μικρό padding στο κινητό για να μην είναι τεράστιο */
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
