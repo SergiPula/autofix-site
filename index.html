@@ -7,22 +7,20 @@
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            padding-top: 70px;
             background-color: #f4f4f4;
             scroll-behavior: smooth;
+            padding-top: 70px;
         }
 
         header {
             background-color: #333;
             color: white;
-            padding: 15px;
-            text-align: center;
             position: fixed;
             width: 100%;
             top: 0;
@@ -37,15 +35,14 @@
 
         nav a {
             color: white;
-            padding: 10px 15px;
+            padding: 15px 20px;
             text-decoration: none;
-            text-transform: uppercase;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         nav a:hover {
             background-color: #444;
-            border-radius: 5px;
         }
 
         .hero {
@@ -59,7 +56,6 @@
             align-items: center;
             color: white;
             text-align: center;
-            animation: fadeIn 2s;
         }
 
         .hero h1 {
@@ -68,6 +64,7 @@
 
         .hero p {
             font-size: 1.2rem;
+            margin-top: 10px;
         }
 
         .hero button {
@@ -78,7 +75,7 @@
             cursor: pointer;
             font-size: 1rem;
             margin-top: 20px;
-            transition: background-color 0.3s ease-in-out;
+            transition: background-color 0.3s;
         }
 
         .hero button:hover {
@@ -88,80 +85,53 @@
         section {
             padding: 40px 20px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: auto;
         }
 
-        .services {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .service-item {
-            flex: 1 1 350px;
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .workspace-images {
+        .services, .workspace-images, .works-images {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .workspace img, .works img {
+        .service-item, .testimonial-item, .contact-item {
+            background-color: white;
+            padding: 20px;
             border-radius: 10px;
-            width: 100%;
-            height: auto;
-            max-height: 300px;
-            object-fit: cover;
-        }
-
-        .works img {
-            max-height: 250px;
-        }
-
-        .workspace, .works {
-            background-color: #C0C0C0;
-            color: #1c1c1c;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        .testimonials, .about, .contact {
+        .workspace, .works, .testimonials, .about, .contact {
             background-color: #1c1c1c;
             color: white;
-            text-align: center;
-            padding: 40px 20px;
+        }
+
+        .workspace-images img, .works-images img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         .testimonial-item {
-            margin: 20px auto;
-            max-width: 700px;
-            padding: 20px;
-            background: #2a2a2a;
-            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .about {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            align-items: center;
+            text-align: center;
         }
 
         .about img {
-            max-width: 400px;
             width: 100%;
+            max-width: 500px;
             border-radius: 10px;
-        }
-
-        .about-content {
-            max-width: 600px;
-            text-align: left;
+            margin-top: 20px;
         }
 
         .contact-info {
@@ -169,60 +139,39 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            margin-top: 20px;
         }
 
         .contact-item {
-            flex: 1 1 250px;
-            background-color: #2a2a2a;
+            background-color: #333;
             padding: 20px;
             border-radius: 10px;
+            flex: 1 1 250px;
+        }
+
+        .contact a {
+            color: #f4f4f4;
+            text-decoration: none;
         }
 
         footer {
-            background-color: #333;
+            background-color: #000;
             color: white;
             text-align: center;
             padding: 20px;
         }
 
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .fade-on-scroll {
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .fade-on-scroll.visible {
-            opacity: 1;
-        }
-
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
             .hero {
-                background-position: top center;
-                height: 80vh;
+                background-position: center top;
             }
-
-            .about {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-
-            .about-content {
-                text-align: center;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
+            .about img {
+                max-width: 100%;
             }
         }
     </style>
@@ -247,19 +196,19 @@
     </div>
 
     <section id="services">
-        <h2 style="text-align: center">Οι Υπηρεσίες μας</h2>
+        <h2>Οι Υπηρεσίες μας</h2>
         <div class="services">
-            <div class="service-item fade-on-scroll">
+            <div class="service-item">
                 <img src="images/04_Cybertruck.jpg" alt="Επιδιόρθωση Χτυπημάτων">
                 <h3>Επιδιόρθωση Χτυπημάτων</h3>
                 <p>Επισκευάζουμε χτυπήματα και ζημιές στο αμάξωμα του αυτοκινήτου σας.</p>
             </div>
-            <div class="service-item fade-on-scroll">
+            <div class="service-item">
                 <img src="images/17dac4791a00ec63e325f0c53fa9426d.jpg" alt="Βαφή Αυτοκινήτου">
                 <h3>Βαφή Αυτοκινήτου</h3>
                 <p>Προσφέρουμε άριστες υπηρεσίες βαφής για κάθε τύπο οχήματος.</p>
             </div>
-            <div class="service-item fade-on-scroll">
+            <div class="service-item">
                 <img src="images/2023-tesla-model-x.jpg" alt="Αλλαγή Φανοποιίας">
                 <h3>Αλλαγή Φανοποιίας</h3>
                 <p>Αντικαθιστούμε μέρη του αυτοκινήτου με γνήσια ανταλλακτικά.</p>
@@ -278,7 +227,7 @@
 
     <section id="works" class="works">
         <h2>Έργα μας</h2>
-        <div class="workspace-images">
+        <div class="works-images">
             <img src="images/tesla-model-3-lenkrad.jpg" alt="Έργο 1">
             <img src="images/tesla-roadster-new.jpeg" alt="Έργο 2">
             <img src="images/Tesla.jpg" alt="Έργο 3">
@@ -287,35 +236,33 @@
 
     <section id="testimonials" class="testimonials">
         <h2>Μαρτυρίες Πελατών</h2>
-        <div class="testimonial-item fade-on-scroll">
+        <div class="testimonial-item">
             <p>"Αξιοθαύμαστες υπηρεσίες και επαγγελματισμός! Μπράβο!" - Γιάννης</p>
         </div>
-        <div class="testimonial-item fade-on-scroll">
+        <div class="testimonial-item">
             <p>"Έμεινα πολύ ευχαριστημένος με την επισκευή του αυτοκινήτου μου." - Μαρία</p>
         </div>
-        <div class="testimonial-item fade-on-scroll">
+        <div class="testimonial-item">
             <p>"Εξαιρετική ποιότητα και πολύ φιλικοί άνθρωποι!" - Δημήτρης</p>
         </div>
     </section>
 
     <section id="about" class="about">
-        <div class="about-content fade-on-scroll">
-            <h2>Σχετικά με Εμάς</h2>
-            <p>Το φανοποιείο AutoFix λειτουργεί με πάνω από 20 χρόνια εμπειρίας στον τομέα της φανοποιίας, παρέχοντας ποιοτικές υπηρεσίες με εγγύηση.</p>
-        </div>
+        <h2>Σχετικά με Εμάς</h2>
+        <p>Το φανοποιείο AutoFix λειτουργεί με πάνω από 20 χρόνια εμπειρίας στον τομέα της φανοποιίας, παρέχοντας ποιοτικές υπηρεσίες με εγγύηση.</p>
         <img src="images/tesla-voiture.jpg" alt="Εικόνα φανοποιείου">
     </section>
 
     <section id="contact" class="contact">
         <h2>Επικοινωνήστε μαζί μας</h2>
         <div class="contact-info">
-            <div class="contact-item fade-on-scroll">
+            <div class="contact-item">
                 <p>Τηλέφωνο: <a href="tel:+302101234567">210 123 4567</a></p>
             </div>
-            <div class="contact-item fade-on-scroll">
+            <div class="contact-item">
                 <p>Email: <a href="mailto:info@autofix.gr">info@autofix.gr</a></p>
             </div>
-            <div class="contact-item fade-on-scroll">
+            <div class="contact-item">
                 <p>Διεύθυνση: Οδός Παράδειγμα 123, Αθήνα</p>
             </div>
         </div>
@@ -324,22 +271,5 @@
     <footer>
         <p>&copy; 2024 AutoFix. Όλα τα δικαιώματα κατοχυρωμένα.</p>
     </footer>
-
-    <script>
-        const elements = document.querySelectorAll('.fade-on-scroll');
-
-        function showElementsOnScroll() {
-            const scrollPosition = window.scrollY + window.innerHeight;
-
-            elements.forEach((element) => {
-                if (element.getBoundingClientRect().top + window.scrollY < scrollPosition) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', showElementsOnScroll);
-        showElementsOnScroll();
-    </script>
 </body>
 </html>
