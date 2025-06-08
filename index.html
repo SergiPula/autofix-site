@@ -1,219 +1,464 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Φανοποιείο AutoFix</title>
     <style>
+        /* Reset & basics */
         * {
             box-sizing: border-box;
         }
-
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            padding-top: 60px;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
+            color: #1c1c1c;
             scroll-behavior: smooth;
+            padding-top: 70px; /* offset for fixed header */
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
 
+        /* Header & Navigation */
         header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            background: #333;
+            color: white;
             z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
-
         nav {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
         }
-
         nav a {
-            color: white;
-            padding: 8px 12px;
-            text-decoration: none;
-            text-transform: uppercase;
+            display: block;
+            padding: 15px 18px;
             font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
         }
-
         nav a:hover {
-            background-color: #444;
+            background-color: #555;
             border-radius: 5px;
         }
 
+        /* Hero section */
         .hero {
             height: 100vh;
-            background-image: url('images/tesla-voiture.jpg');
-            background-size: cover;
-            background-position: center;
+            background: url('images/tesla-voiture.jpg') center center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
-            animation: fadeIn 2s;
+            animation: fadeIn 2s ease forwards;
+            padding: 0 20px;
         }
-
         .hero h1 {
             font-size: 3rem;
+            margin: 0 0 15px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
         }
-
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 0 25px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
         }
-
         .hero button {
-            padding: 12px 25px;
-            background-color: #C0C0C0;
-            color: white;
+            background-color: #c0c0c0;
             border: none;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            color: white;
             cursor: pointer;
-            font-size: 1rem;
-            margin-top: 20px;
-            transition: background-color 0.3s ease-in-out;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-
         .hero button:hover {
-            background-color: #A0A0A0;
+            background-color: #a0a0a0;
         }
 
+        /* Sections */
         section {
-            padding: 40px 20px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        section h2 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1c1c1c;
         }
 
-        .services, .workspace-images {
+        /* Services and workspace images */
+        .services, .workspace-images, .works-images {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
         }
-
-        .service-item, .workspace-images img, .testimonial-item, .contact-item {
+        .service-item, .workspace-images img, .work-item {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
             flex: 1 1 300px;
-            background-color: white;
             padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .service-item:hover, .work-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .service-item img, .workspace-images img, .work-item img {
+            width: 100%;
+            height: auto;
             border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, opacity 0.5s;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .service-item h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .service-item p {
+            color: #555;
+            line-height: 1.4;
         }
 
+        /* Workspace section styling */
         .workspace {
-            background-color: #C0C0C0;
+            background-color: #c0c0c0;
+            padding: 50px 20px;
+            border-radius: 14px;
+        }
+        .workspace h2 {
             color: #1c1c1c;
-            text-align: center;
         }
 
+        /* Works section styling */
         .works {
             background-color: #f4f4f4;
-            text-align: center;
+            padding: 50px 20px;
+            border-radius: 14px;
         }
 
+        /* Testimonials */
         .testimonials {
             background-color: #1c1c1c;
             color: #f4f4f4;
+            padding: 50px 20px;
+            border-radius: 14px;
             text-align: center;
         }
+        .testimonial-item {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            position: relative;
+            padding: 25px 30px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+            transition: background 0.3s ease;
+        }
+        .testimonial-item:hover {
+            background: rgba(255,255,255,0.18);
+        }
+        .testimonial-item::before {
+            content: "“";
+            font-size: 4rem;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            color: rgba(255,255,255,0.3);
+            font-family: serif;
+        }
+        .testimonial-item p {
+            margin: 0;
+            padding-left: 25px;
+            color: #f4f4f4;
+        }
+        .testimonial-item p::after {
+            content: "";
+            display: block;
+            margin-top: 12px;
+            height: 1px;
+            background: #666;
+            width: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
+        /* About section */
         .about {
             background-color: #1c1c1c;
             color: #f4f4f4;
+            border-radius: 14px;
+            padding: 50px 20px;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 40px;
             align-items: center;
-            gap: 30px;
+            justify-content: center;
             text-align: center;
         }
-
+        .about-content {
+            flex: 1 1 400px;
+            max-width: 600px;
+        }
+        .about-content h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
         .about img {
-            max-width: 100%;
-            border-radius: 10px;
+            flex: 1 1 400px;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+            max-height: 350px;
+            object-fit: cover;
         }
 
+        /* Contact section */
         .contact {
             background-color: #1c1c1c;
             color: white;
+            border-radius: 14px;
+            padding: 50px 20px;
             text-align: center;
         }
-
+        .contact h2 {
+            margin-bottom: 35px;
+            font-size: 2rem;
+        }
         .contact-info {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 40px;
         }
-
+        .contact-item {
+            flex: 1 1 250px;
+            max-width: 350px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+            transition: background-color 0.3s;
+        }
+        .contact-item:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
         .contact-item a {
+            color: #c0c0c0;
+            font-weight: 600;
+        }
+        .contact-item a:hover {
             color: #fff;
-            text-decoration: underline;
         }
 
+        /* Footer */
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 25px 10px;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            user-select: none;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        /* Fade in on scroll */
+        .fade-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-on-scroll.visible {
+            opacity: 1;
+            transform: none;
         }
 
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        .fade-on-scroll {
-            opacity: 0;
-            transition: opacity 1s ease, transform 0.6s ease;
-            transform: translateY(30px);
-        }
-
-        .fade-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .hero p {
                 font-size: 1rem;
             }
             nav a {
-                padding: 6px 8px;
+                padding: 12px 10px;
                 font-size: 0.9rem;
+            }
+            .about {
+                flex-direction: column;
+            }
+            .about img {
+                max-height: 250px;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 25px;
             }
         }
     </style>
 </head>
 <body>
-<!-- ... (το υπόλοιπο HTML παραμένει όπως το είχες) ... -->
+
+<header>
+    <nav>
+        <a href="#home">ΑΡΧΙΚΗ</a>
+        <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
+        <a href="#workspace">Ο ΧΩΡΟΣ ΜΑΣ</a>
+        <a href="#works">ΕΡΓΑ</a>
+        <a href="#testimonials">ΜΑΡΤΥΡΙΕΣ</a>
+        <a href="#about">ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ</a>
+        <a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <h1>Καλώς ήρθατε στο AutoFix</h1>
+    <p>Αναλαμβάνουμε την φανοποιία του αυτοκινήτου σας.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Κλείσε ραντεβού σήμερα
+    </button>
+</div>
+
+<section id="services">
+    <h2>Οι Υπηρεσίες μας</h2>
+    <div class="services">
+        <div class="service-item fade-on-scroll">
+            <img src="images/04_Cybertruck.jpg" alt="Επιδιόρθωση Χτυπημάτων" />
+            <h3>Επιδιόρθωση Χτυπημάτων</h3>
+            <p>Επισκευάζουμε χτυπήματα και ζημιές στο αμάξωμα του αυτοκινήτου σας.</p>
+        </div>
+        <div class="service-item fade-on-scroll">
+            <img src="images/17dac4791a00ec63e325f0c53fa9426d.jpg" alt="Βαφή Αυτοκινήτου" />
+            <h3>Βαφή Αυτοκινήτου</h3>
+            <p>Προσφέρουμε άριστες υπηρεσίες βαφής για κάθε τύπο οχήματος.</p>
+        </div>
+        <div class="service-item fade-on-scroll">
+            <img src="images/2023-tesla-model-x.jpg" alt="Αλλαγή Φανοποιίας" />
+            <h3>Αλλαγή Φανοποιίας</h3>
+            <p>Αντικαθιστούμε μέρη του αυτοκινήτου με γνήσια ανταλλακτικά.</p>
+        </div>
+    </div>
+</section>
+
+<section id="workspace" class="workspace">
+    <h2>Ο Χώρος μας</h2>
+    <div class="workspace-images">
+        <img src="images/220504131322_Tesla-Model-3-acidental-removed-mph-1.jpg" alt="Χώρος Εργασίας 1" class="fade-on-scroll" />
+        <img src="images/_132042373_tesla_alamy.jpg" alt="Χώρος Εργασίας 2" class="fade-on-scroll" />
+        <img src="images/tesla-car-free.jpg" alt="Χώρος Εργασίας 3" class="fade-on-scroll" />
+    </div>
+</section>
+
+<section id="works" class="works">
+    <h2>Έργα μας</h2>
+    <div class="services works-images">
+        <div class="work-item fade-on-scroll">
+            <img src="images/tesla-model-3-lenkrad.jpg" alt="Έργο 1" />
+        </div>
+        <div class="work-item fade-on-scroll">
+            <img src="images/tesla-roadster-new.jpeg" alt="Έργο 2" />
+        </div>
+        <div class="work-item fade-on-scroll">
+            <img src="images/Tesla.jpg" alt="Έργο 3" />
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="testimonials">
+    <h2>Μαρτυρίες Πελατών</h2>
+    <div class="testimonial-item fade-on-scroll">
+        <p>"Αξιοθαύμαστες υπηρεσίες και επαγγελματισμός! Μπράβο!" - Γιάννης</p>
+    </div>
+    <div class="testimonial-item fade-on-scroll">
+        <p>"Έμεινα πολύ ευχαριστημένος με την επισκευή του αυτοκινήτου μου." - Μαρία</p>
+    </div>
+    <div class="testimonial-item fade-on-scroll">
+        <p>"Εξαιρετική ποιότητα και πολύ φιλικοί άνθρωποι!" - Δημήτρης</p>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <div class="about-content fade-on-scroll">
+        <h2>Σχετικά με Εμάς</h2>
+        <p>
+            Το φανοποιείο AutoFix λειτουργεί με πάνω από 20 χρόνια εμπειρίας στον τομέα της φανοποιίας, παρέχοντας ποιοτικές υπηρεσίες με εγγύηση.
+        </p>
+    </div>
+    <img src="images/tesla-voiture.jpg" alt="Εικόνα φανοποιείου" class="fade-on-scroll" />
+</section>
+
+<section id="contact" class="contact">
+    <h2>Επικοινωνήστε μαζί μας</h2>
+    <div class="contact-info">
+        <div class="contact-item fade-on-scroll">
+            <p>Τηλέφωνο: <a href="tel:+302101234567">210 123 4567</a></p>
+        </div>
+        <div class="contact-item fade-on-scroll">
+            <p>Email: <a href="mailto:info@autofix.gr">info@autofix.gr</a></p>
+        </div>
+        <div class="contact-item fade-on-scroll">
+            <p>Διεύθυνση: Οδός Παράδειγμα 123, Αθήνα</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 AutoFix. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+</footer>
+
 <script>
-    const elements = document.querySelectorAll('.fade-on-scroll');
-    function showElementsOnScroll() {
-        const scrollPosition = window.scrollY + window.innerHeight;
-        elements.forEach((element) => {
-            if (element.getBoundingClientRect().top + window.scrollY < scrollPosition - 100) {
-                element.classList.add('visible');
+    const fadeElements = document.querySelectorAll('.fade-on-scroll');
+
+    function checkFadeElements() {
+        const triggerBottom = window.innerHeight * 0.85;
+
+        fadeElements.forEach(el => {
+            const top = el.getBoundingClientRect().top;
+
+            if (top < triggerBottom) {
+                el.classList.add('visible');
             }
         });
     }
-    window.addEventListener('scroll', showElementsOnScroll);
-    showElementsOnScroll();
+
+    window.addEventListener('scroll', checkFadeElements);
+    window.addEventListener('load', checkFadeElements);
 </script>
+
 </body>
 </html>
