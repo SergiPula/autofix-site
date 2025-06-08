@@ -119,8 +119,65 @@
             border-radius: 10px;
         }
 
+        /* Υπηρεσίες μας */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.service-item {
+    flex: 1 1 300px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-8px);
+}
+
+.service-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+        /* Μαρτυρίες Πελατών */
+        .testimonials {
+            background-color: #1c1c1c;
+            color: #f4f4f4;
+            padding: 50px 20px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 35px;
+            font-weight: 700;
+        }
+
+        .testimonial-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
         .testimonial-item {
-            margin-bottom: 20px;
+            background-color: #333;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-style: italic;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
 
         .about {
@@ -195,26 +252,27 @@
         <button onclick="document.getElementById('contact').scrollIntoView()">Κλείσε ραντεβού σήμερα</button>
     </div>
 
-    <section id="services">
-        <h2>Οι Υπηρεσίες μας</h2>
-        <div class="services">
-            <div class="service-item">
-                <img src="images/04_Cybertruck.jpg" alt="Επιδιόρθωση Χτυπημάτων">
-                <h3>Επιδιόρθωση Χτυπημάτων</h3>
-                <p>Επισκευάζουμε χτυπήματα και ζημιές στο αμάξωμα του αυτοκινήτου σας.</p>
-            </div>
-            <div class="service-item">
-                <img src="images/17dac4791a00ec63e325f0c53fa9426d.jpg" alt="Βαφή Αυτοκινήτου">
-                <h3>Βαφή Αυτοκινήτου</h3>
-                <p>Προσφέρουμε άριστες υπηρεσίες βαφής για κάθε τύπο οχήματος.</p>
-            </div>
-            <div class="service-item">
-                <img src="images/2023-tesla-model-x.jpg" alt="Αλλαγή Φανοποιίας">
-                <h3>Αλλαγή Φανοποιίας</h3>
-                <p>Αντικαθιστούμε μέρη του αυτοκινήτου με γνήσια ανταλλακτικά.</p>
-            </div>
+<!-- Υπηρεσίες μας -->
+<section id="services">
+    <h2 style="text-align: center; margin-bottom: 30px;">Οι Υπηρεσίες μας</h2>
+    <div class="services">
+        <div class="service-item fade-on-scroll">
+            <img src="images/04_Cybertruck.jpg" alt="Επιδιόρθωση Χτυπημάτων">
+            <h3>Επιδιόρθωση Χτυπημάτων</h3>
+            <p>Επισκευάζουμε χτυπήματα και ζημιές στο αμάξωμα του αυτοκινήτου σας.</p>
         </div>
-    </section>
+        <div class="service-item fade-on-scroll">
+            <img src="images/17dac4791a00ec63e325f0c53fa9426d.jpg" alt="Βαφή Αυτοκινήτου">
+            <h3>Βαφή Αυτοκινήτου</h3>
+            <p>Προσφέρουμε άριστες υπηρεσίες βαφής για κάθε τύπο οχήματος.</p>
+        </div>
+        <div class="service-item fade-on-scroll">
+            <img src="images/2023-tesla-model-x.jpg" alt="Αλλαγή Φανοποιίας">
+            <h3>Αλλαγή Φανοποιίας</h3>
+            <p>Αντικαθιστούμε μέρη του αυτοκινήτου με γνήσια ανταλλακτικά.</p>
+        </div>
+    </div>
+</section>
 
     <section id="workspace" class="workspace">
         <h2>Ο Χώρος μας</h2>
@@ -234,18 +292,21 @@
         </div>
     </section>
 
-    <section id="testimonials" class="testimonials">
-        <h2>Μαρτυρίες Πελατών</h2>
-        <div class="testimonial-item">
+<!-- Μαρτυρίες Πελατών -->
+<section id="testimonials" class="testimonials">
+    <h2>Μαρτυρίες Πελατών</h2>
+    <div class="testimonial-container">
+        <div class="testimonial-item fade-on-scroll">
             <p>"Αξιοθαύμαστες υπηρεσίες και επαγγελματισμός! Μπράβο!" - Γιάννης</p>
         </div>
-        <div class="testimonial-item">
+        <div class="testimonial-item fade-on-scroll">
             <p>"Έμεινα πολύ ευχαριστημένος με την επισκευή του αυτοκινήτου μου." - Μαρία</p>
         </div>
-        <div class="testimonial-item">
+        <div class="testimonial-item fade-on-scroll">
             <p>"Εξαιρετική ποιότητα και πολύ φιλικοί άνθρωποι!" - Δημήτρης</p>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="about" class="about">
         <h2>Σχετικά με Εμάς</h2>
