@@ -340,6 +340,61 @@
         .fade-on-scroll.visible {
             opacity: 1;
         }
+
+        /* Responsive Styles */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .services,
+    .workspace-images,
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-item,
+    .workspace-images img,
+    .contact-item {
+        width: 90% !important;
+        margin-bottom: 20px;
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .about-content {
+        padding: 0;
+    }
+
+    .about img {
+        margin-top: 20px;
+        max-width: 90%;
+    }
+
+    nav a {
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+    }
+
+    header {
+        padding: 10px;
+    }
+}
     </style>
 </head>
 <body>
